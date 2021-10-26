@@ -1,0 +1,14 @@
+{
+    "name": "adriano-antonella/tp-final",
+    "description": "trabajo integrador ingenieria software 2",
+    "type": "project",
+    "license": "GPL",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload":{
+        "psr-4": {
+            "App\\": "app"
+        }
+    }
+}
