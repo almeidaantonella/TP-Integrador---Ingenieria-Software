@@ -30,5 +30,22 @@
 			$this->assertEquals(3500,$emp->getSalario());
 		}
 
+        // Tests 1/7: setSector y getSector
+		public function testSePuedeModificarElSectorDelEmpleado(){
+			$emp=$this->crear();
+			$lugar = "En el Fin del Mundo";
+			$this->assertEquals("No especificado",$emp->getSector());
+			//seteo el sector que le asigno
+			$emp->setSector($lugar);
+			//pruebo si se asigno correctamente
+			$this->assertEquals("En el Fin del Mundo",$emp->getSector());
+		}
+
+		// Test 1/7: __toString
+		public function testSePuedeConvertirElObjetoEnUnaCadena(){
+			$e=$this->crear();
+			$this->assertEquals("Ricardo Montaner 1235789 3500",$e);
+		}
+
 	}
 ?>
