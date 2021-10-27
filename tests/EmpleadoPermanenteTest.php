@@ -56,7 +56,7 @@
 		$ingreso = new DateTime();
 		$ingreso->modify('+15 years'); //le sumo 15 años a la fecha creada
 		$this->expectException(\Exception::class);
-		$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso); //tiro la excepcion al instanciar
+		$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso); 
 	}
 
 
