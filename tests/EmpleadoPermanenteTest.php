@@ -39,6 +39,7 @@
 			$ingreso->modify('-10 years');
 			$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso);
 			$this->assertEquals(10,$ep->calcularAntiguedad());
+
 		}
 
 		//Test 5/6: Empleado sin proporcionar la fecha de ingreso.
