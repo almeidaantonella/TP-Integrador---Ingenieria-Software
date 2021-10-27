@@ -4,7 +4,7 @@
 	class EmpleadoPermanenteTest extends EmpleadoTest{
 		
 		//Funcion crear un Nuevo Empleado Eventual
-		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=15000, $fechaIngreso=null){
+		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=5000, $fechaIngreso=null){
 			$fecha = new \DateTime();
 			$ep = new \App\EmpleadoPermanente($nombre, $apellido, $dni, $salario, $fechaIngreso);
 			return $ep;
@@ -39,6 +39,7 @@
 			$ingreso->modify('-10 years');
 			$ep= $this->crear('Adriano','Caloni','36543024','15000', $ingreso);
 			$this->assertEquals(10,$ep->calcularAntiguedad());
+
 		}
 
 		
