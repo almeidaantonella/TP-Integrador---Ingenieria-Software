@@ -16,22 +16,16 @@
 			$this-> assertEquals(9.375,$ee->calcularComision()); 
 		}
 
-<<<<<<< HEAD
-=======
-		//Tests 2/3:
->>>>>>> 11688ec7a6c42c5007ca9eda6f865b2d5f017448
-		public function calcularComision() {
-			$suma = 0;
-			foreach ($this->montosDeVentas as $unaVenta) {
-				$suma += $unaVenta;
-			}
-			// La comisión es el 5% del promedio de ventas:
-			return ($suma / count($this->montosDeVentas)) * 0.05;
-		}
-
-		//Tests 2/3: método calcularIngresoTotal() funciona como se espera
-		public function calcularIngresoTotal() {
-			return $this->salario + $this->calcularComision();
-		}
+        //Tests 2/3: calcularIngresoTotal()
+        public function testElCalculoDelIngresoTotalEsCorrecto(){
+            $ee=$this->crear();
+            $this->assertEquals(3509.375,$ee->calcularIngresoTotal());
+        }
+        //Tests 3/3: Monto de venta negativo o cero, excepcion
+        public function testNoSePuedeCrearConMontoDeVentaNegativoOCero(){
+            $this->expectException(\Exception::class); // va a tirar una excepcion
+            $ventas = [0,-100, 150, 200];
+            $ee = $this->crear("Ricardo","Montaner","1235789",$ventas);
+        }
     }
 ?>
