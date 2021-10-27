@@ -4,7 +4,7 @@
 	class EmpleadoPermanenteTest extends EmpleadoTest{
 		
 		//Funcion crear un Nuevo Empleado Eventual
-		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=15000, $fechaIngreso=null){
+		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=5000, $fechaIngreso=null){
 			$fecha = new \DateTime();
 			$ep = new \App\EmpleadoPermanente($nombre, $apellido, $dni, $salario, $fechaIngreso);
 			return $ep;
@@ -21,7 +21,7 @@
 		public function testCalcularComisionEnBaseALaAntiguedad(){
 			$ingreso = new DateTime();
 			$ingreso->modify('-10 years');
-			$ep= $this->crear('Emanuel','Montoto','30852963','5000', $ingreso); 
+			$ep= $this->crear('Adriano','Caloni','30852963','5000', $ingreso); 
 			$this->assertEquals("10%",$ep->calcularComision());
 		}
 

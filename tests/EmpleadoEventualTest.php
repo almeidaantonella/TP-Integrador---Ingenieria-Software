@@ -15,5 +15,20 @@
 			$ee= $this->crear(); //(150+200+250+150)/4)*0,05 = 9,375
 			$this-> assertEquals(9.375,$ee->calcularComision()); 
 		}
+
+		//Tests 2/3:
+		public function calcularComision() {
+			$suma = 0;
+			foreach ($this->montosDeVentas as $unaVenta) {
+				$suma += $unaVenta;
+			}
+			// La comisión es el 5% del promedio de ventas:
+			return ($suma / count($this->montosDeVentas)) * 0.05;
+		}
+
+		//Tests 2/3: método calcularIngresoTotal() funciona como se espera
+		public function calcularIngresoTotal() {
+			return $this->salario + $this->calcularComision();
+		}
     }
 ?>
