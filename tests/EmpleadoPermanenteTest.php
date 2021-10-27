@@ -4,7 +4,7 @@
 	class EmpleadoPermanenteTest extends EmpleadoTest{
 		
 		//Funcion crear un Nuevo Empleado Eventual
-		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=15000, $fechaIngreso=null){
+		public function crear($nombre="Adriano", $apellido="Caloni", $dni=36543024, $salario=5000, $fechaIngreso=null){
 			$fecha = new \DateTime();
 			$ep = new \App\EmpleadoPermanente($nombre, $apellido, $dni, $salario, $fechaIngreso);
 			return $ep;
@@ -21,25 +21,44 @@
 		public function testCalcularComisionEnBaseALaAntiguedad(){
 			$ingreso = new DateTime();
 			$ingreso->modify('-10 years');
-			$ep= $this->crear('Adriano','Caloni','36543024','15000', $ingreso); 
-			$this->assertEquals("15%",$ep->calcularComision());
+			$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso); 
+			$this->assertEquals("10%",$ep->calcularComision());
 		}
 
          //Tests 3/6: calcularIngresoTotal()
 		public function testSePuedeCalcularElIngresoTotal(){
 			$ingreso = new DateTime();
 			$ingreso->modify('-10 years');
-			$ep= $this->crear('Adriano','Caloni','36543024','15000', $ingreso); 
-			$this->assertEquals(16500,$ep->calcularIngresoTotal());
+			$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso); 
+			$this->assertEquals(5500,$ep->calcularIngresoTotal());
 		}
 
 		//Tests 4/6: calcularAntiguedad() 
 		public function testSePuedeCalcularAntiguedad(){
 			$ingreso = new DateTime();
 			$ingreso->modify('-10 years');
-			$ep= $this->crear('Adriano','Caloni','36543024','15000', $ingreso);
+			$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso);
 			$this->assertEquals(10,$ep->calcularAntiguedad());
 		}
+
+		//Test 5/6: Empleado sin proporcionar la fecha de ingreso.
+		public function testFechaSinProporcionar(){
+			$ep = $this->crear("Adriano", "Caloni", '36543024', '5000'); //Inicializo sin Fecha
+			$fecha = new DateTime();
+
+			$this->assertEquals(date_format($fecha,'y-m-d'), date_format($ep->getFechaIngreso(),'y-m-d')); 
+
+			$this->assertEquals(0,$ep->calcularAntiguedad());
+		}
+
+       //Tests 6/6: Fecha de ingreso posterior a la de hoy, excepción
+	   public function testNoSePuedeCrearConFechaPosteriorAlDiaDeHoy(){
+		$ingreso = new DateTime();
+		$ingreso->modify('+15 years'); //le sumo 15 años a la fecha creada
+		$this->expectException(\Exception::class);
+		$ep= $this->crear('Adriano','Caloni','36543024','5000', $ingreso); //tiro la excepcion al instanciar
+	}
+
 
 		
 	}
