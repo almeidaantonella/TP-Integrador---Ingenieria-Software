@@ -16,7 +16,10 @@
 			$this-> assertEquals(9.375,$ee->calcularComision()); 
 		}
 
+<<<<<<< HEAD
+=======
 		//Tests 2/3:
+>>>>>>> 11688ec7a6c42c5007ca9eda6f865b2d5f017448
 		public function calcularComision() {
 			$suma = 0;
 			foreach ($this->montosDeVentas as $unaVenta) {
